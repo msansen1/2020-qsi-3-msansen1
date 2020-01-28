@@ -21,6 +21,7 @@ type state =
 
 [@react.component]
 let make = () => {
+  // ReasonReactRouter.push("toto");
   let (state, setState) = React.useState(() => LoadingDogs);
 
   // Notice that instead of `useEffect`, we have `useEffect0`. See
