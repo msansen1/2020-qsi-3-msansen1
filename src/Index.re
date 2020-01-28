@@ -29,7 +29,7 @@ let makeContainer = text => {
 
 
 //  Afficher Home
-ReactDOMRe.render(<Router />, makeContainer("Atomic Greeting"));
+ReactDOMRe.render(<Router />, makeContainer("Home"));
 
 
 // All 4 examples.

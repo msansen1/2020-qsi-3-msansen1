@@ -73,6 +73,6 @@ let make = () => {
          ->React.array
        }}
     </div>
-    <button onClick={_ => showDog(setState)}> {React.string("New dog")} </button>
+    <button onClick={ _ => showDog(setState)} > {React.string("New dog")} </button>
   </>;
 };
