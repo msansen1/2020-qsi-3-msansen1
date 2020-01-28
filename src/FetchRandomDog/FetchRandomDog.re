@@ -5,14 +5,7 @@ type state =
   | ErrorFetchingDogs
   | LoadedDogs(array(string));
 
-[@react.component]
-let make = () => {
-  let (state, setState) = React.useState(() => LoadingDogs);
-
-  // Notice that instead of `useEffect`, we have `useEffect0`. See
-  // reasonml.github.io/reason-react/docs/en/components#hooks for more info
-  React.useEffect0(() => {
-    Js.Promise.(
+  let showDog = ( setState ) => Js.Promise.(
       fetch("https://dog.ceo/api/breeds/image/random/1")
       |> then_(response => response##json())
       |> then_(jsonResponse => {
@@ -26,6 +19,17 @@ let make = () => {
       |> ignore
     );
 
+[@react.component]
+let make = () => {
+  let (state, setState) = React.useState(() => LoadingDogs);
+
+  // Notice that instead of `useEffect`, we have `useEffect0`. See
+  // reasonml.github.io/reason-react/docs/en/components#hooks for more info
+
+  //sortir ca dans une fonction pour pouvoir l'appeler aussi via le bouton?
+  React.useEffect0(() => {
+    
+    showDog(setState);
     // Returning None, instead of Some(() => ...), means we don't have any
     // cleanup to do before unmounting. That's not 100% true. We should
     // technically cancel the promise. Unofortunately, there's currently no
@@ -68,6 +72,6 @@ let make = () => {
          ->React.array
        }}
     </div>
-    <button> {React.string("New dog")} </button>
+    <button onClick={_ => showDog(setState)}> {React.string("New dog")} </button>
   </>;
 };
