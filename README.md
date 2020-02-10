@@ -185,7 +185,7 @@ Le premier intérêt de graphQL est que nous avons un end-point unique : https:/
 Vous pouvez tester votre token :
 
 ```sh
-curl -H "Authorization: bearer mytoken" -X POST -d " \
+curl -H "Authorization: bearer ff86a7374a9cfe942a37ac68c91d7e107196fd31" -X POST -d " \
  { \
    \"query\": \"query { viewer { login }}\" \
  } \
@@ -203,6 +203,53 @@ Liser le Readme et consulter les exemples pour intégrer cette librairie à votr
 ###### EXERCICE 3 (query) :
 
 Créez un nouveau composant qui affiche votre nom, avatar,votre status, votre nombre de follower et votre nombre de following récupérés grâce à l'API Github.
+
+a partir de https://graphiql-online.com/ avec l'url https://api.github.com/graphql et le bearer token
+
+ou directement depuis l'exporer github: https://developer.github.com/v4/explorer/
+
+query MyQuery {
+  user(login: "msansen1") {
+    avatarUrl(size: 10)
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    name
+    bio
+    status {
+      message
+      emojiHTML
+    }
+  }
+}
+
+RESULT 
+
+{
+  "data": {
+    "user": {
+      "avatarUrl": "https://avatars2.githubusercontent.com/u/47026536?s=10&v=4",
+      "followers": {
+        "totalCount": 0
+      },
+      "following": {
+        "totalCount": 2
+      },
+      "name": null,
+      "bio": "DevOps, Runner, Mountain Biker and Pinball Lover",
+      "status": {
+        "message": "Focusing on GraphQL",
+        "emojiHTML": "<div><g-emoji class=\"g-emoji\" alias=\"dart\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f3af.png\">🎯</g-emoji></div>"
+      }
+    }
+  }
+}
+
+source d'inspiration: https://github.com/FormidableLabs/reason-urql/tree/master/examples/2-query
+
 
 ###### EXERCICE 4 (mutation) :
 
